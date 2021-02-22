@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Encora.Properties.UI.Models.PropertyModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <h2>List of Properties</h2>
+</p>
+<div class="container">
+    <div class="row" style="padding:5px">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-2">
+            <b>@Html.DisplayNameFor(model => model.Id)</b>
+        </div>
+        <div class="col-md-1">
+            <b>@Html.DisplayNameFor(model => model.YearBuilt)</b>
+        </div>
+        <div class="col-md-2">
+            <b>@Html.DisplayNameFor(model => model.ListPrice)</b>
+        </div>
+        <div class="col-md-2">
+            <b>@Html.DisplayNameFor(model => model.MonthlyRent)</b>
+        </div>
+        <div class="col-md-2">
+            <b>@Html.DisplayNameFor(model => model.GrossYield)</b>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+        <form asp-controller="Property" asp-action="Save" method="post">
+            <div class="row" style="padding:5px">
+                <div class="col-md-1">
+                    <a data-toggle="collapse" class="btn btn-primary" href="#item-@item.Id">
+                        <i class="fa fa-fw">-</i>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <input id="Id" name="Id" value="@item.Id" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <input id="YearBuilt" name="YearBuilt" value="@item.YearBuilt" class="form-control" readonly />
+                </div>
+                <div class="col-md-2">
+                    <input id="ListPrice" name="ListPrice" value="@item.ListPrice" class="form-control" readonly />
+                </div>
+                <div class="col-md-2">
+                    <input id="MonthlyRent" name="MonthlyRent" value="@item.MonthlyRent" class="form-control" readonly />
+                </div>
+                <div class="col-md-2">
+                    <input id="GrossYield" name="GrossYield" value="@item.GrossYield" class="form-control" readonly />
+                </div>
+                <div class="col-auto">
+                    <button type="submit" value="Save" class="btn btn-warning pull-right" formaction="property/save">Save</button>
+                </div>
+            </div>
+            <div class="row collapse" id="item-@item.Id" style="padding:3px">
+                <div class="col-md-2">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.AddressOne)</b><br />
+                    <input id="AddressOne" name="Address.AddressOne" value="@item.Address.AddressOne" class="form-control" readonly />
+                </div>
+                <div class="col-md-2">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.AddressTwo)</b><br />
+                    <input id="AddressTwo" name="Address.AddressTwo" value="@item.Address.AddressTwo" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.City)</b> <br />
+                    <input id="City" name="Address.City" value="@item.Address.City" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.Country)</b> <br />
+                    <input id="Country" name="Address.Country" value="@item.Address.Country" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.County)</b> <br />
+                    <input id="County" name="Address.County" value="@item.Address.County" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.District)</b> <br />
+                    <input id="District" name="Address.District" value="@item.Address.District" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.State)</b> <br />
+                    <input id="State" name="Address.State" value="@item.Address.State" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.Zip)</b> <br />
+                    <input id="Zip" name="Address.Zip" value="@item.Address.Zip" class="form-control" readonly />
+                </div>
+                <div class="col-md-1">
+                    <b>@Html.DisplayNameFor(modelItem => item.Address.ZipPlus4)</b> <br />
+                    <input id="ZipPlus4" name="Address.ZipPlus4" value="@item.Address.ZipPlus4" class="form-control" readonly />
+                </div>
+            </div>
+        </form>
+    }
+
+    <div>
+        <span class="text-danger">@TempData["result_message"]</span>
+    </div>
+</div>
+
